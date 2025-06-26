@@ -1,0 +1,272 @@
+[
+  {
+    "word": "Strand",
+    "hints": [
+      "Sand",
+      "Wellen",
+      "Handtuch",
+      "Sonne"
+    ]
+  },
+  {
+    "word": "Bibliothek",
+    "hints": [
+      "Bücher",
+      "Ruhe",
+      "Lesen",
+      "Regale"
+    ]
+  },
+  {
+    "word": "Krankenhaus",
+    "hints": [
+      "Patient",
+      "Arzt",
+      "Spritze",
+      "Notaufnahme"
+    ]
+  },
+  {
+    "word": "Kino",
+    "hints": [
+      "Film",
+      "Leinwand",
+      "Popcorn",
+      "Sitzreihe"
+    ]
+  },
+  {
+    "word": "Supermarkt",
+    "hints": [
+      "Einkaufen",
+      "Kasse",
+      "Regale",
+      "Wagen"
+    ]
+  },
+  {
+    "word": "Schule",
+    "hints": [
+      "Lehrer",
+      "Tafel",
+      "Klasse",
+      "Hausaufgaben"
+    ]
+  },
+  {
+    "word": "Flughafen",
+    "hints": [
+      "Gepäck",
+      "Check-in",
+      "Sicherheitskontrolle",
+      "Flugzeug"
+    ]
+  },
+  {
+    "word": "Zirkus",
+    "hints": [
+      "Clown",
+      "Manege",
+      "Akrobat",
+      "Tiere"
+    ]
+  },
+  {
+    "word": "Theater",
+    "hints": [
+      "Bühne",
+      "Schauspieler",
+      "Vorhang",
+      "Publikum"
+    ]
+  },
+  {
+    "word": "Spielplatz",
+    "hints": [
+      "Rutsche",
+      "Schaukel",
+      "Sandkasten",
+      "Kinder"
+    ]
+  },
+  {
+    "word": "Restaurant",
+    "hints": [
+      "Kellner",
+      "Speisekarte",
+      "Tisch",
+      "Essen"
+    ]
+  },
+  {
+    "word": "Tankstelle",
+    "hints": [
+      "Benzin",
+      "Zapfsäule",
+      "Auto",
+      "Reifenluft"
+    ]
+  },
+  {
+    "word": "Park",
+    "hints": [
+      "Gras",
+      "Bäume",
+      "Bank",
+      "Spaziergang"
+    ]
+  },
+  {
+    "word": "Berg",
+    "hints": [
+      "Gipfel",
+      "Wandern",
+      "Steigung",
+      "Aussicht"
+    ]
+  },
+  {
+    "word": "Museum",
+    "hints": [
+      "Ausstellung",
+      "Gemälde",
+      "Führung",
+      "Ticket"
+    ]
+  },
+  {
+    "word": "Pizzeria",
+    "hints": [
+      "Teig",
+      "Käse",
+      "Ofen",
+      "Tomatensoße"
+    ]
+  },
+  {
+    "word": "U-Bahn",
+    "hints": [
+      "Station",
+      "Schienen",
+      "Tunnel",
+      "Fahrplan"
+    ]
+  },
+  {
+    "word": "Kühlschrank",
+    "hints": [
+      "Kälte",
+      "Lebensmittel",
+      "Strom",
+      "Tür"
+    ]
+  },
+  {
+    "word": "Spiegel",
+    "hints": [
+      "Reflexion",
+      "Glas",
+      "Rahmen",
+      "Gesicht"
+    ]
+  },
+  {
+    "word": "Wecker",
+    "hints": [
+      "Klingeln",
+      "Morgen",
+      "Schlafen",
+      "Zeit"
+    ]
+  },
+  {
+    "word": "Waschmaschine",
+    "hints": [
+      "Wäsche",
+      "Trommel",
+      "Schleudern",
+      "Pulver"
+    ]
+  },
+  {
+    "word": "Computer",
+    "hints": [
+      "Tastatur",
+      "Monitor",
+      "Maus",
+      "Software"
+    ]
+  },
+  {
+    "word": "Fernseher",
+    "hints": [
+      "Fernbedienung",
+      "Bildschirm",
+      "Sender",
+      "Film"
+    ]
+  },
+  {
+    "word": "Uhr",
+    "hints": [
+      "Zeit",
+      "Zeiger",
+      "Armband",
+      "Tick"
+    ]
+  },
+  {
+    "word": "Kerze",
+    "hints": [
+      "Wachs",
+      "Flamme",
+      "Duft",
+      "Docht"
+    ]
+  },
+  {
+    "word": "Zelt",
+    "hints": [
+      "Camping",
+      "Stangen",
+      "Plane",
+      "Heringe"
+    ]
+  },
+  {
+    "word": "Smartphone",
+    "hints": [
+      "Touchscreen",
+      "Apps",
+      "Kamera",
+      "Anruf"
+    ]
+  },
+  {
+    "word": "Fahrrad",
+    "hints": [
+      "Pedale",
+      "Lenker",
+      "Reifen",
+      "Kette"
+    ]
+  },
+  {
+    "word": "Gitarre",
+    "hints": [
+      "Saiten",
+      "Musik",
+      "Klang",
+      "Griffbrett"
+    ]
+  },
+  {
+    "word": "Buch",
+    "hints": [
+      "Seiten",
+      "Kapitel",
+      "Einband",
+      "Autor"
+    ]
+  }
+]
