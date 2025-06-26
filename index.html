@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>imposter.giveme.pizza</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .fade {
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .hidden-text {
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
+    }
+    .visible-text {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+  <!-- Startansicht -->
+  <div id="startView" class="w-full max-w-md">
+    <h1 class="text-3xl font-bold text-center mb-6">imposter (sus game)</h1>
+    <div id="playerInputs" class="space-y-4">
+      <input type="text" placeholder="Spieler 1" class="playerInput w-full p-2 rounded border" />
+      <input type="text" placeholder="Spieler 2" class="playerInput w-full p-2 rounded border" />
+      <input type="text" placeholder="Spieler 3" class="playerInput w-full p-2 rounded border" />
+    </div>
+    <button id="addPlayerInputBtn" class="mt-4 w-full bg-gray-300 text-gray-800 py-2 rounded hover:bg-gray-400 transition">
+      Spieler hinzufügen
+    </button>
+    <button id="addPlayerBtn" class="mt-4 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">
+      Spiel starten
+    </button>
+  </div>
+
+  <!-- Spielansicht -->
+  <div id="gameView" class="hidden w-full max-w-md text-center">
+    <div id="textContainer" class="fade visible-text text-xl font-medium mb-6 min-h-[6rem] whitespace-pre-line"></div>
+    <button id="toggleBtn" class="bg-green-500 text-white px-6 py-3 rounded-full text-lg shadow-md transition-colors duration-300">
+      Weiter
+    </button>
+  </div>
+
+  <script>
+    const startView = document.getElementById('startView');
+    const gameView = document.getElementById('gameView');
+    const addPlayerBtn = document.getElementById('addPlayerBtn');
+    const addPlayerInputBtn = document.getElementById('addPlayerInputBtn');
+    const playerInputsContainer = document.getElementById('playerInputs');
+    const toggleBtn = document.getElementById('toggleBtn');
+    const textContainer = document.getElementById('textContainer');
+
+    let shuffledPlayers = [];
+    let currentIndex = 0;
+    let imposter = null;
+    let showRole = false;
+    let gamePhase = "roles";
+
+    // Dynamische Begriffe
+    let searchedWord = "Lade...";
+    let hint = "...";
+
+    async function fetchRandomWordAndHint() {
+      try {
+        const res = await fetch("words.json");
+        const data = await res.json();
+
+        const randomWordObj = data[Math.floor(Math.random() * data.length)];
+        searchedWord = randomWordObj.word;
+        hint = randomWordObj.hints[Math.floor(Math.random() * randomWordObj.hints.length)];
+      } catch (error) {
+        console.error("Fehler beim Laden der Wörter:", error);
+        searchedWord = "Kühlschrank";
+        hint = "tür";
+      }
+    }
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    addPlayerInputBtn.addEventListener('click', () => {
+      const newInput = document.createElement('input');
+      newInput.type = 'text';
+      newInput.placeholder = `Spieler ${playerInputsContainer.children.length + 1}`;
+      newInput.className = 'playerInput w-full p-2 rounded border';
+      playerInputsContainer.appendChild(newInput);
+    });
+
+    addPlayerBtn.addEventListener('click', async () => {
+      const inputs = document.querySelectorAll('.playerInput');
+      const names = Array.from(inputs).map(input => input.value.trim()).filter(name => name !== "");
+      if (names.length >= 3) {
+        await fetchRandomWordAndHint();
+
+        shuffledPlayers = shuffleArray(names);
+        imposter = shuffledPlayers[Math.floor(Math.random() * shuffledPlayers.length)];
+        currentIndex = 0;
+        showRole = false;
+        gamePhase = "roles";
+
+        startView.classList.add('hidden');
+        gameView.classList.remove('hidden');
+        textContainer.textContent = "Drücke 'Weiter', um den ersten Spielernamen zu sehen";
+      } else {
+        alert('Bitte mindestens 3 Spieler eingeben.');
+      }
+    });
+
+    toggleBtn.addEventListener('click', () => {
+      if (gamePhase === "roles") {
+        if (!showRole) {
+          textContainer.textContent = `${shuffledPlayers[currentIndex]}\n\nweiter, um deine Rolle anzuzeigen`;
+          showRole = true;
+        } else {
+          const player = shuffledPlayers[currentIndex];
+          if (player === imposter) {
+            textContainer.textContent = `Imposter\n\nTipp: "${hint}"`;
+          } else {
+            textContainer.textContent = `${searchedWord}\n\n(Spieler)`;
+          }
+
+          currentIndex++;
+          showRole = false;
+
+          if (currentIndex >= shuffledPlayers.length) {
+            gamePhase = "pause";
+            toggleBtn.classList.replace("bg-green-500", "bg-yellow-500");
+            toggleBtn.textContent = "Fertig";
+          }
+        }
+
+      } else if (gamePhase === "pause") {
+        textContainer.textContent = "Alle Rollen verteilt. Spielt!\n\nKlickt den Button, um den Imposter aufzudecken.";
+        toggleBtn.classList.replace("bg-yellow-500", "bg-red-600");
+        toggleBtn.textContent = "Weiter, um den Imposter aufzudecken";
+        gamePhase = "reveal";
+
+      } else if (gamePhase === "reveal") {
+        textContainer.textContent = `Der Imposter war:\n\n${imposter}`;
+        //toggleBtn.disabled = true;
+        //toggleBtn.classList.add("opacity-50", "cursor-not-allowed");
+        toggleBtn.textContent = "nonchmal spielen";
+        gamePhase = "end";
+      } else if (gamePhase === "end") {
+        window.location.reload(true)
+      }
+    });
+  </script>
+</body>
+</html>
